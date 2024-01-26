@@ -10,7 +10,7 @@ const options = {
         weight: '75'
     },
     headers: {
-        'X-RapidAPI-Key': '2640467764msh3f6901d913f0faep1dbe1djsn85c1bf767f63',
+        'X-RapidAPI-Key': 'your-api-key',
         'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com'
     }
 };
