@@ -3,8 +3,8 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 const age = ref(25);
-const weight = ref(65);
-const height = ref(180);
+const weight = ref(70);
+const height = ref(170);
 const bmiResult = ref(null);
 let responseCode = ref(200);
 let errorMessage = ref("");
@@ -19,7 +19,7 @@ const calculateBMI = async () => {
       height: height.value,
     },
     headers: {
-      'X-RapidAPI-Key': 'your-api-key',
+      'X-RapidAPI-Key': '2640467764msh3f6901d913f0faep1dbe1djsn85c1bf767f63',
       'X-RapidAPI-Host': 'fitness-calculator.p.rapidapi.com',
     },
   };
@@ -50,21 +50,26 @@ const calculateBMI = async () => {
 <template>
   	<div class="bmi-calculator">
 		<h2>Oblicz swoje BMI</h2>
-
-		<div class="input-container">
-			<label for="age">Wiek:</label>
-			<input v-model="age" type="number" id="age" min="1" max="80" />
-		</div>
+        <div class="grid">
+            <div class="input-container">
+                <label for="age">Wiek:</label>
+                <input type="number" id="ageInput" min="1" max="80" v-model="age" disabled/>
+                <input type="range" id="ageRange" min="1" max="80" v-model="age">
+            </div>
+            
+            <div class="input-container">
+                <label for="weight">Waga (kg):</label>
+                <input type="number" id="weightInput" min="40" max="160" v-model="weight" disabled/>
+                <input type="range" id="weightRange" min="40" max="160" v-model="weight">
+            </div>
+            
+            <div class="input-container">
+                <label for="height">Wzrost (cm):</label>
+                <input type="number" id="heightInput" min="130" max="230" v-model="height" disabled/>
+                <input type="range" id="heightRange" min="130" max="230" v-model="height">
+            </div>
+        </div>
 		
-		<div class="input-container">
-			<label for="weight">Waga (kg):</label>
-			<input v-model="weight" type="number" id="weight" min="40" max="160" />
-		</div>
-		
-		<div class="input-container">
-			<label for="height">Wzrost (cm):</label>
-			<input v-model="height" type="number" id="height" min="130" max="230" />
-		</div>
 		
 		<button @click="calculateBMI">Oblicz BMI</button>
 		
@@ -101,6 +106,13 @@ const calculateBMI = async () => {
 
   .input-container {
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  input:disabled{
+    color: black;
+    width: 15%;
   }
 
   button {
